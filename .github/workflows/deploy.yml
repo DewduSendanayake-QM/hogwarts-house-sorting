@@ -8,8 +8,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -25,7 +26,6 @@ jobs:
 
       - name: Archive application
         run: |
-          # Create a zip that EB can use (exclude git and workflow)
           ZIPFILE=app-${{ github.run_id }}.zip
           zip -r $ZIPFILE . -x ".git/*" ".github/*" "venv/*" "__pycache__/*"
           echo "ZIPFILE=$ZIPFILE" >> $GITHUB_ENV
