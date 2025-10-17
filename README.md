@@ -9,3 +9,6 @@ Run locally:
 4. python application.py
 5. open http://127.0.0.1:5000
 
+
+
+
