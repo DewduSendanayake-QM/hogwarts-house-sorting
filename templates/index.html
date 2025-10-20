@@ -8,20 +8,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Mist overlay -->
+  <div class="mist"></div>
+
   <div class="container">
     <header>
-      <h1>🧙 Hogwarts House Sorting Quiz 🏰</h1>
-      <p>Discover your true Hogwarts house!</p>
+      <h1>Hey Potterhead! 🧙🏻🧙🏻‍♂️</h1>
+      <p>Welcome to the Hogwarts House Sorting quiz</p>
     </header>
 
     <main>
       <div id="quiz" class="quiz"></div>
       <button id="submit" class="btn">Reveal My House!</button>
-      <div id="result" class="result hidden"></div>
+      <div id="result" class="result hidden">
+        <div class="result-card">
+          <h2 class="house-name">What's your House? <span id="house"></span></h2>
+          <p class="house-desc" id="house-desc">Take the quiz and find your true Hogwarts House!</p>
+          <div class="house-scores" id="house-scores"></div>
+        </div>
+      </div>
     </main>
 
     <footer>
-      <p>Powered by magic and Flask ⚡</p>
+      <p>Powered by Magic ⚡</p>
     </footer>
   </div>
 
