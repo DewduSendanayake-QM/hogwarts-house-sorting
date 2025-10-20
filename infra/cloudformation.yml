@@ -123,3 +123,5 @@ Outputs:
   PublicDNS:
     Description: Public DNS name of the EC2 instance
     Value: !GetAtt WebServerInstance.PublicDnsName
+
+
