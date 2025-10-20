@@ -52,6 +52,69 @@ QUIZ = [
             "Curiosity": {"Ravenclaw": 2},
             "Resourcefulness": {"Slytherin": 2}
         }
+    },
+    {
+        "q": "When faced with a difficult choice, you:",
+        "options": {
+            "Act boldly without hesitation": {"Gryffindor": 2},
+            "Consider the feelings of others": {"Hufflepuff": 2},
+            "Analyze every possible outcome": {"Ravenclaw": 2},
+            "Choose the option that benefits you most": {"Slytherin": 2}
+        }
+    },
+    {
+        "q": "Which trait do you think defines success?",
+        "options": {
+            "Courage to try even when afraid": {"Gryffindor": 2},
+            "Dedication and loyalty": {"Hufflepuff": 2},
+            "Knowledge and cleverness": {"Ravenclaw": 2},
+            "Ambition and strategy": {"Slytherin": 2}
+        }
+    },
+    {
+        "q": "How do you solve conflicts?",
+        "options": {
+            "By standing up and defending what’s right": {"Gryffindor": 2},
+            "By seeking compromise and fairness": {"Hufflepuff": 2},
+            "By thinking creatively for a solution": {"Ravenclaw": 2},
+            "By influencing others to your advantage": {"Slytherin": 2}
+        }
+    },
+    {
+        "q": "Your ideal study environment is:",
+        "options": {
+            "Active and adventurous": {"Gryffindor": 1},
+            "Calm and supportive": {"Hufflepuff": 1},
+            "Quiet with lots of resources": {"Ravenclaw": 1},
+            "Challenging and competitive": {"Slytherin": 1}
+        }
+    },
+    {
+        "q": "If someone breaks the rules, you:",
+        "options": {
+            "Confront them bravely": {"Gryffindor": 2},
+            "Try to mediate and understand": {"Hufflepuff": 2},
+            "Observe and learn why": {"Ravenclaw": 2},
+            "Use it to your advantage strategically": {"Slytherin": 2}
+        }
+    },
+    {
+        "q": "Which magical object would you choose?",
+        "options": {
+            "Sword of Valor": {"Gryffindor": 2},
+            "Hufflepuff's Cup": {"Hufflepuff": 2},
+            "Ravenclaw's Diadem": {"Ravenclaw": 2},
+            "Slytherin's Locket": {"Slytherin": 2}
+        }
+    },
+    {
+        "q": "Your greatest fear is:",
+        "options": {
+            "Being cowardly when bravery is needed": {"Gryffindor": 2},
+            "Betraying someone you care about": {"Hufflepuff": 2},
+            "Being ignorant or unprepared": {"Ravenclaw": 2},
+            "Being powerless or irrelevant": {"Slytherin": 2}
+        }
     }
 ]
 
