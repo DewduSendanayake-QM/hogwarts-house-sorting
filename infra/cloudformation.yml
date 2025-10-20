@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: >-
+Description: >
   Stack to host Hogwarts House Sorting app on a single EC2 instance.
   The instance pulls a zip from S3 (S3Bucket/S3Key params) and runs it as a systemd service.
 
@@ -14,6 +14,9 @@ Parameters:
     Type: String
     Default: t3.micro
     Description: EC2 instance type to run the app
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: Name of an existing EC2 KeyPair to enable SSH access
 
 Resources:
 
@@ -21,7 +24,6 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Allow HTTP and SSH
-#      VpcId: !Ref "AWS::NoValue"
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 80
@@ -72,30 +74,26 @@ Resources:
       Comment: "Instance will download app zip from S3 and run the Flask app"
     Properties:
       InstanceType: !Ref InstanceType
-      ImageId: "{{resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2}}"
+      ImageId: "{{resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2:latest}}"
       SecurityGroupIds:
         - !Ref InstanceSecurityGroup
       IamInstanceProfile: !Ref EC2InstanceProfile
+      KeyName: !Ref KeyName                # ✅ Added KeyName here
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash -xe
           yum update -y
-          # install prerequisites
           yum install -y git unzip python3 make gcc
           python3 -m pip install --upgrade pip
-          # create app dir
           mkdir -p /opt/hogwarts
           cd /opt/hogwarts
-          # fetch app zip from S3 (S3Bucket and S3Key provided as CFN params)
           /usr/bin/aws s3 cp s3://${S3Bucket}/${S3Key} /tmp/app.zip
           unzip -o /tmp/app.zip -d /opt/hogwarts
-          # create venv and install requirements
           python3 -m venv /opt/hogwarts/.venv
           /opt/hogwarts/.venv/bin/pip install --upgrade pip
           if [ -f /opt/hogwarts/requirements.txt ]; then
             /opt/hogwarts/.venv/bin/pip install -r /opt/hogwarts/requirements.txt
           fi
-          # create systemd service
           cat > /etc/systemd/system/hogwarts.service <<'EOF'
           [Unit]
           Description=Hogwarts House Sorting Service
@@ -123,5 +121,3 @@ Outputs:
   PublicDNS:
     Description: Public DNS name of the EC2 instance
     Value: !GetAtt WebServerInstance.PublicDnsName
-
-
