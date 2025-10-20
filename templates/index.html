@@ -1,26 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Hogwarts House Sorting</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="/static/css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hogwarts House Sorting Quiz</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
-    <h1>Hogwarts House Sorting</h1>
-    <div id="quiz"></div>
-    <button id="submit">Get Sorted!</button>
-    <div id="result" class="hidden"></div>
+    <header>
+      <h1>🧙 Hogwarts House Sorting Quiz 🏰</h1>
+      <p>Discover your true Hogwarts house!</p>
+    </header>
+
+    <main>
+      <div id="quiz" class="quiz"></div>
+      <button id="submit" class="btn">Reveal My House!</button>
+      <div id="result" class="result hidden"></div>
+    </main>
+
+    <footer>
+      <p>Powered by magic and Flask ⚡</p>
+    </footer>
   </div>
-  <script id="quiz-data" type="application/json">
-    {{ quiz | tojson }}
-  </script>
+
   <script>
-    // quiz data injected by flask via templating (read from non-JS script tag)
-    const QUIZ = JSON.parse(document.getElementById('quiz-data').textContent);
+    const QUIZ = {{ quiz|tojson }};
   </script>
-  <script src="/static/js/app.js"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>
-
