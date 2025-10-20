@@ -21,7 +21,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Allow HTTP and SSH
-      VpcId: !Ref "AWS::NoValue"  # use default VPC if not specified
+#      VpcId: !Ref "AWS::NoValue"
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 80
