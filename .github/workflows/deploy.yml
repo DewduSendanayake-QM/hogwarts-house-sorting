@@ -84,7 +84,10 @@ jobs:
             --stack-name "$STACK_NAME" \
             --template-file "$TEMPLATE" \
             --capabilities CAPABILITY_NAMED_IAM \
-            --parameter-overrides S3Bucket=${{ secrets.S3_BUCKET }} S3Key=$ZIPFILE \
+            --parameter-overrides \
+                S3Bucket=${{ secrets.S3_BUCKET }} \
+                S3Key=$ZIPFILE \
+                KeyName=hogwarts-key \
             --region $AWS_REGION
 
 
