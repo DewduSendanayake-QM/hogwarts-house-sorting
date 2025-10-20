@@ -1,181 +1,232 @@
-/* Base body: Hogwarts house blended gradient */
+/* Import magical font */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
+/* Body enchanted background: soft blend of 4 Hogwarts house colors */
 body {
-  margin: 0;
-  font-family: 'Cinzel', serif;
-  color: #fff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-  background: linear-gradient(135deg, #7f0909, #f0e68c, #0e1a40, #1a472a);
-  background-size: 800% 800%;
-  animation: gradientShift 20s ease infinite;
-  position: relative;
-  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+    margin: 0;
+    padding: 0;
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(135deg, rgba(165,0,0,1.7), rgba(255,223,0,1.5), rgba(0,82,186,2.8), rgba(0,128,0,1.9));
+    min-height: 100vh;
+    color: #fff;
+    overflow-x: hidden;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Gradient animation for magical flow */
-@keyframes gradientShift {
-  0% {background-position: 0% 50%;}
-  25% {background-position: 50% 50%;}
-  50% {background-position: 100% 50%;}
-  75% {background-position: 50% 50%;}
-  100% {background-position: 0% 50%;}
+/* Center the main container */
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+    padding: 2rem;
+    z-index: 1;
 }
 
-/* Magical floating spark container */
-.sparks, .light-orbs {
-  pointer-events: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  overflow: hidden;
-  z-index: 0;
-}
-
-/* Spark particles */
-.spark {
-  position: absolute;
-  border-radius: 50%;
-  animation: drift linear infinite;
-  box-shadow: 0 0 8px rgba(255,255,255,0.8);
-}
-
-/* Floating orbs in house colors */
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.6;
-  filter: blur(4px);
-  animation: floatOrbs linear infinite;
+/* Subtle drifting mist */
+.mist {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    /*background: url('/static/img/mist.png') repeat;*/
+    animation: drift 60s linear infinite;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 0;
 }
 
 @keyframes drift {
-  0% { transform: translateY(0) translateX(0);}
-  100% { transform: translateY(900px) translateX(50px);}
+    0% { transform: translate(0,0); }
+    100% { transform: translate(-50%, -50%); }
 }
 
-@keyframes floatOrbs {
-  0% { transform: translateY(0);}
-  50% { transform: translateY(400px) translateX(50px);}
-  100% { transform: translateY(0);}
-}
-
-/* Container for quiz */
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 2rem;
-  z-index: 1;
-  position: relative;
-}
-
-/* Header styles */
+/* Header */
 header {
-  text-align: center;
-  margin-bottom: 2rem;
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 3rem;
+    text-shadow: 0 0 10px gold, 0 0 20px #fff;
+    position: relative;
 }
 
-header h1 {
-  font-size: 3rem;
-  color: #fff;
-  text-shadow: 0 0 15px #fff, 0 0 30px #ffd700, 0 0 50px #7f0909;
+/* Magical shimmer effect on header */
+header::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -50%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.3), rgba(255,255,255,0.0), rgba(255,255,255,0.3));
+    transform: skewX(-20deg);
+    animation: shimmer 3s infinite;
 }
 
-header p {
-  font-size: 1.2rem;
-  color: #f0e68c;
-  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+@keyframes shimmer {
+    0% { left: -50%; }
+    50% { left: 100%; }
+    100% { left: -50%; }
 }
 
-/* Quiz question cards */
-.quiz .question {
-  background: rgba(0,0,0,0.35);
-  border-radius: 15px;
-  padding: 1.2rem 1.5rem;
-  margin-bottom: 1.5rem;
-  transition: transform 0.3s, box-shadow 0.3s;
-  backdrop-filter: blur(5px);
+/* Quiz container */
+#quiz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    z-index: 1;
 }
 
-.quiz .question:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+/* Question card */
+.question {
+    background: rgba(20,20,30,0.6);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.question:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(255,255,255,0.7);
 }
 
 /* Options */
 .options label {
-  display: block;
-  margin: 0.5rem 0;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  transition: background 0.3s, color 0.3s, transform 0.2s;
-}
-
-.options label:hover {
-  background: rgba(255,255,255,0.1);
-  transform: scale(1.03);
-  color: #ffd700;
+    display: block;
+    padding: 0.5rem 1rem;
+    margin: 0.3rem 0;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background: rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
 }
 
 .options input[type="radio"] {
-  margin-right: 10px;
+    margin-right: 0.5rem;
+}
+
+.options label:hover {
+    background: rgba(255,215,0,0.2);
+    box-shadow: 0 0 10px gold;
+}
+
+/* Selected magical glow */
+.options input[type="radio"]:checked + span,
+.options input[type="radio"]:checked + label {
+    background: rgba(255,223,0,0.4);
+    box-shadow: 0 0 15px gold, 0 0 25px yellow;
 }
 
 /* Submit button */
-.btn {
-  display: block;
-  margin: 2rem auto;
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  font-family: 'Cinzel', serif;
-  background: linear-gradient(45deg, #7f0909, #f0e68c, #0e1a40, #1a472a);
-  border: none;
-  border-radius: 15px;
-  color: #fff;
-  cursor: pointer;
-  text-shadow: 0 0 5px rgba(0,0,0,0.5);
-  transition: transform 0.2s, box-shadow 0.2s;
+#submit {
+    background: linear-gradient(45deg, #a50000, #ffdf00, #0052ba, #008000);
+    border: none;
+    padding: 1rem 2rem;
+    margin: 2rem;
+    font-size: 1.5rem;
+    font-family: 'Cinzel', serif;
+    border-radius: 2rem;
+    cursor: pointer;
+    color: #fff;
+    text-shadow: 0 0 5px #000;
+    transition: all 0.4s ease;
 }
 
-.btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+#submit:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255,255,255,0.8);
 }
 
-/* Result card */
-.result {
-  text-align: center;
-  background: rgba(0,0,0,0.5);
-  border-radius: 15px;
-  padding: 2rem;
-  margin-top: 2rem;
-  font-size: 1.2rem;
-  animation: fadeIn 1s ease-in-out;
-  backdrop-filter: blur(5px);
+/* Result Card */
+.result-card {
+    background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(30,0,50,0.8));
+    border: 2px solid gold;
+    border-radius: 2rem;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #fff;
+    box-shadow: 0 0 30px gold;
+    position: relative;
+    overflow: hidden;
+    animation: floatCard 1s ease-out;
 }
 
-.result h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  text-shadow: 0 0 10px #fff, 0 0 20px #ffd700;
+@keyframes floatCard {
+    0% { transform: translateY(30px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
 }
 
-.hidden {
-  display: none;
+.house-name {
+    font-size: 2.5rem;
+    text-shadow: 0 0 15px gold, 0 0 30px #fff;
+    margin-bottom: 1rem;
 }
 
-pre {
-  text-align: left;
-  background: rgba(0,0,0,0.3);
-  padding: 1rem;
-  border-radius: 10px;
-  overflow-x: auto;
-  color: #ffd700;
+.house-desc {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #ffd700;
 }
 
-/* House-specific result themes */
-body.gryffindor { background: linear-gradient(135deg, #7f0909, #ffc500); color: #fff5e1; }
-body.hufflepuff { background: linear-gradient(135deg, #f0e68c, #a1866f); color: #3b2f2f; }
-body.ravenclaw { background: linear-gradient(135deg, #0e1a40, #3a5fcd); color: #e0e6f2; }
-body.slytherin { background: linear-gradient(135deg, #1a472a, #2a623d); color: #d0e6d0; }
+/* House scores bars */
+.house-scores {
+    display: flex;
+    justify-content: space-around;
+    gap: 0.5rem;
+}
+
+.house-score-bar {
+    flex: 1;
+    height: 20px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.house-score-fill {
+    height: 100%;
+    width: 0;
+    border-radius: 10px;
+    text-align: right;
+    padding-right: 5px;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transition: width 1s ease-out;
+}
+
+.house-score-fill.Gryffindor { background: #a50000; }
+.house-score-fill.Hufflepuff { background: #ffdf00; color: #000; }
+.house-score-fill.Ravenclaw { background: #0052ba; }
+.house-score-fill.Slytherin { background: #008000; }
+
+/* Magical sparkles */
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: gold;
+    border-radius: 50%;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+    0% { transform: translateY(0) scale(1); opacity: 0.8; }
+    50% { transform: translateY(-20px) scale(1.5); opacity: 0.4; }
+    100% { transform: translateY(0) scale(1); opacity: 0.8; }
+}
