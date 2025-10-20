@@ -1,0 +1,125 @@
+/* Fonts & colors */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+  color: #f0f0f0;
+}
+
+h1, h2, h3 {
+  font-family: 'Cinzel', serif;
+  text-shadow: 2px 2px #000;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+header p {
+  font-size: 1.2rem;
+  color: #dcdcdc;
+}
+
+/* Quiz questions */
+.quiz .question {
+  background: rgba(255,255,255,0.05);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.quiz .question:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.options label {
+  display: block;
+  margin: 0.5rem 0;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.options input[type="radio"] {
+  margin-right: 10px;
+}
+
+.options label:hover {
+  background: rgba(255,255,255,0.1);
+  color: #ffd700;
+}
+
+/* Button */
+.btn {
+  display: block;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-family: 'Cinzel', serif;
+  background: linear-gradient(45deg, #6b4226, #b5835f);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+/* Result */
+.result {
+  text-align: center;
+  background: rgba(255,255,255,0.05);
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.result h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+pre {
+  text-align: left;
+  background: rgba(0,0,0,0.3);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  color: #ffd700;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 4rem;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
