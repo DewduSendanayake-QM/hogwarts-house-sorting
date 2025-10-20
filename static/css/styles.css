@@ -1,100 +1,164 @@
-/* Fonts & colors */
+/* Base body: Hogwarts house blended gradient */
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
-  background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
-  color: #f0f0f0;
-}
-
-h1, h2, h3 {
   font-family: 'Cinzel', serif;
-  text-shadow: 2px 2px #000;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #7f0909, #f0e68c, #0e1a40, #1a472a);
+  background-size: 800% 800%;
+  animation: gradientShift 20s ease infinite;
+  position: relative;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
+/* Gradient animation for magical flow */
+@keyframes gradientShift {
+  0% {background-position: 0% 50%;}
+  25% {background-position: 50% 50%;}
+  50% {background-position: 100% 50%;}
+  75% {background-position: 50% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* Magical floating spark container */
+.sparks, .light-orbs {
+  pointer-events: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Spark particles */
+.spark {
+  position: absolute;
+  border-radius: 50%;
+  animation: drift linear infinite;
+  box-shadow: 0 0 8px rgba(255,255,255,0.8);
+}
+
+/* Floating orbs in house colors */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.6;
+  filter: blur(4px);
+  animation: floatOrbs linear infinite;
+}
+
+@keyframes drift {
+  0% { transform: translateY(0) translateX(0);}
+  100% { transform: translateY(900px) translateX(50px);}
+}
+
+@keyframes floatOrbs {
+  0% { transform: translateY(0);}
+  50% { transform: translateY(400px) translateX(50px);}
+  100% { transform: translateY(0);}
+}
+
+/* Container for quiz */
 .container {
   max-width: 900px;
   margin: auto;
   padding: 2rem;
+  z-index: 1;
+  position: relative;
 }
 
+/* Header styles */
 header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-header p {
-  font-size: 1.2rem;
-  color: #dcdcdc;
+header h1 {
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 0 0 15px #fff, 0 0 30px #ffd700, 0 0 50px #7f0909;
 }
 
-/* Quiz questions */
+header p {
+  font-size: 1.2rem;
+  color: #f0e68c;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+}
+
+/* Quiz question cards */
 .quiz .question {
-  background: rgba(255,255,255,0.05);
-  border: 2px solid rgba(255,255,255,0.2);
-  border-radius: 12px;
-  padding: 1rem 1.5rem;
+  background: rgba(0,0,0,0.35);
+  border-radius: 15px;
+  padding: 1.2rem 1.5rem;
   margin-bottom: 1.5rem;
   transition: transform 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(5px);
 }
 
 .quiz .question:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
 }
 
+/* Options */
 .options label {
   display: block;
   margin: 0.5rem 0;
   cursor: pointer;
   padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: background 0.3s, color 0.3s;
+  border-radius: 10px;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+.options label:hover {
+  background: rgba(255,255,255,0.1);
+  transform: scale(1.03);
+  color: #ffd700;
 }
 
 .options input[type="radio"] {
   margin-right: 10px;
 }
 
-.options label:hover {
-  background: rgba(255,255,255,0.1);
-  color: #ffd700;
-}
-
-/* Button */
+/* Submit button */
 .btn {
   display: block;
   margin: 2rem auto;
   padding: 1rem 2rem;
   font-size: 1.2rem;
   font-family: 'Cinzel', serif;
-  background: linear-gradient(45deg, #6b4226, #b5835f);
+  background: linear-gradient(45deg, #7f0909, #f0e68c, #0e1a40, #1a472a);
   border: none;
-  border-radius: 12px;
+  border-radius: 15px;
   color: #fff;
   cursor: pointer;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
-/* Result */
+/* Result card */
 .result {
   text-align: center;
-  background: rgba(255,255,255,0.05);
-  border: 2px solid rgba(255,255,255,0.3);
-  border-radius: 12px;
-  padding: 1.5rem;
+  background: rgba(0,0,0,0.5);
+  border-radius: 15px;
+  padding: 2rem;
   margin-top: 2rem;
   font-size: 1.2rem;
   animation: fadeIn 1s ease-in-out;
+  backdrop-filter: blur(5px);
 }
 
 .result h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
+  text-shadow: 0 0 10px #fff, 0 0 20px #ffd700;
 }
 
 .hidden {
@@ -105,21 +169,13 @@ pre {
   text-align: left;
   background: rgba(0,0,0,0.3);
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow-x: auto;
   color: #ffd700;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  margin-top: 4rem;
-  font-size: 0.9rem;
-  color: #888;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(10px);}
-  to {opacity: 1; transform: translateY(0);}
-}
+/* House-specific result themes */
+body.gryffindor { background: linear-gradient(135deg, #7f0909, #ffc500); color: #fff5e1; }
+body.hufflepuff { background: linear-gradient(135deg, #f0e68c, #a1866f); color: #3b2f2f; }
+body.ravenclaw { background: linear-gradient(135deg, #0e1a40, #3a5fcd); color: #e0e6f2; }
+body.slytherin { background: linear-gradient(135deg, #1a472a, #2a623d); color: #d0e6d0; }
