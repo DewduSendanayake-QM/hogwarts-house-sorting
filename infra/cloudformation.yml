@@ -72,7 +72,7 @@ Resources:
       Comment: "Instance will download app zip from S3 and run the Flask app"
     Properties:
       InstanceType: !Ref InstanceType
-      ImageId: "{{resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2:latest}}"
+      ImageId: "{{resolve:ssm:/aws/service/ami-amazon-linux/amzn2-ami-hvm-x86_64-gp2}}"
       SecurityGroupIds:
         - !Ref InstanceSecurityGroup
       IamInstanceProfile: !Ref EC2InstanceProfile
