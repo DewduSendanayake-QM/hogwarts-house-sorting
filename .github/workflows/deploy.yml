@@ -94,3 +94,4 @@ jobs:
       - name: Output stack info
         run: |
           aws cloudformation describe-stacks --stack-name "${{ secrets.STACK_NAME }}" --region ${{ secrets.AWS_REGION }}
+
